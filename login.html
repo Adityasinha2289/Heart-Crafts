@@ -1,0 +1,40 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - ShopZone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+
+  <!-- Brand -->
+  <h1 class="text-4xl font-bold text-yellow-500 mb-8">ShopZone</h1>
+
+  <!-- Card -->
+  <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800">Login with Mobile Number</h2>
+
+    <label for="mobile" class="block text-gray-700 font-medium mb-1">Mobile Number</label>
+    <input type="tel" id="mobile" placeholder="Enter 10-digit number" maxlength="10"
+           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 mb-4" />
+
+    <button onclick="sendOTP()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 rounded-lg transition duration-200">
+      Send OTP
+    </button>
+  </div>
+
+  <script>
+    function sendOTP() {
+      const mobile = document.getElementById("mobile").value;
+      if (mobile.length === 10 && /^\d+$/.test(mobile)) {
+        localStorage.setItem("mobile", mobile);
+        window.location.href = "otp.html";
+      } else {
+        alert("Please enter a valid 10-digit mobile number.");
+      }
+    }
+  </script>
+</body>
+</html>

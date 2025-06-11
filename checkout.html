@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - ShopZone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <nav class="bg-gray-900 text-white p-4 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold">ShopZone</a>
+    <ul class="flex space-x-6">
+      <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+      <li><a href="shop.html" class="hover:text-yellow-400">Shop</a></li>
+      <li><a href="cart.html" class="hover:text-yellow-400">Cart</a></li>
+    </ul>
+  </nav>
+
+  <main class="max-w-4xl mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Checkout Summary</h1>
+    <div id="order-summary" class="bg-white p-6 rounded shadow">
+      <table class="w-full mb-6">
+        <thead>
+          <tr class="text-left border-b">
+            <th class="pb-2">Product</th>
+            <th class="pb-2">Qty</th>
+            <th class="pb-2">Price</th>
+            <th class="pb-2">Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items"></tbody>
+      </table>
+      <div class="text-right font-bold text-xl">Total: ₹<span id="total">0</span></div>
+    </div>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4">Payment Method</h2>
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <form id="payment-form" class="space-y-4">
+        <label class="flex items-center">
+          <input type="radio" name="payment" value="COD" checked class="mr-2"> Cash on Delivery
+        </label>
+        <label class="flex items-center">
+          <input type="radio" name="payment" value="UPI" class="mr-2"> UPI Payment
+        </label>
+        <label class="flex items-center">
+          <input type="radio" name="payment" value="Card" class="mr-2"> Credit / Debit Card
+        </label>
+        <button type="submit" class="w-full bg-yellow-400 py-3 rounded font-bold hover:bg-yellow-500">Place Order</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="bg-gray-900 text-white text-center py-6 mt-12">
+    <p>&copy; 2025 ShopZone. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const totalElement = document.getElementById("total");
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        cartItemsContainer.innerHTML += `
+          <tr class="border-b">
+            <td class="py-2">${item.name}</td>
+            <td>
+              <input type="number" min="1" value="${item.quantity}" class="w-16 text-center border rounded" onchange="updateQuantity(${index}, this.value)" />
+            </td>
+            <td>₹${item.price * item.quantity}</td>
+            <td><button onclick="removeItem(${index})" class="text-red-500 hover:underline">Remove</button></td>
+          </tr>
+        `;
+      });
+      totalElement.textContent = total;
+    }
+
+    function updateQuantity(index, value) {
+      cart[index].quantity = parseInt(value);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    document.getElementById("payment-form").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("Order placed successfully! 🎉");
+      localStorage.removeItem("cart");
+      window.location.href = "order-success.html";
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

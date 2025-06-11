@@ -1,0 +1,100 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My E-Commerce</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-900 text-white p-4 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold">HeartCrafts</a>
+    <ul class="flex space-x-6">
+      <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+      <li><a href="shop.html" class="hover:text-yellow-400">Shop</a></li>
+      <li><a href="cart.html" class="hover:text-yellow-400">Contact Us</a></li>
+      <li><a href="login.html" class="hover:text-yellow-400">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-yellow-100">
+    <h1 class="text-4xl font-bold mb-4"> Handmade Emphasis</h1>
+    <p class="text-lg mb-6">Unique pieces made with love and legacy</p>
+    <a href="shop.html" class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-500">Crafted by Hand, from the Heart</a>
+  </section>
+  <!-- Featured Categories -->
+<section class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-8">Featured Categories</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition">
+        <a href="shop.html"> <img src="assets/img/p1.jpg" alt="Men" class="w-full h-48 object-cover rounded mb-4"></a>
+        <h3 class="text-xl font-semibold">Warli Art</h3>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition">
+        <a href="shop.html"><img src="assets/img/p6.jpg" alt="Women" class="w-full h-48 object-cover rounded mb-4"></a>
+        <h3 class="text-xl font-semibold">Hanging Mirrors</h3>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition">
+        <a href="shop.html"><img src="assets/img/p4.jpg" alt="Electronics" class="w-full h-48 object-cover rounded mb-4"></a>
+        <h3 class="text-xl font-semibold">Jute Hangings</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Top Products -->
+<section class="max-w-6xl mx-auto px-4 py-12">
+  <h2 class="text-3xl font-bold mb-6">Top Arts</h2>
+  <div id="top-products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <!-- Products will be injected here -->
+  </div>
+  
+</section>
+
+
+ <!-- Newsletter -->
+<section class="py-12 bg-yellow-100">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <h2 class="text-2xl font-bold mb-4">Join Our Newsletter</h2>
+    <p class="mb-6 text-gray-700">Stay updated with the latest Art Collections.</p>
+    <form class="flex flex-col sm:flex-row justify-center gap-4">
+      <input type="email" placeholder="Your Email" class="px-4 py-2 rounded border w-full sm:w-auto">
+      <button type="submit" class="bg-yellow-500 text-black px-6 py-2 rounded hover:bg-yellow-600 font-semibold">
+        Subscribe
+      </button>
+    </form>
+  </div>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6 mt-12">
+    <p>&copy; 2025 HeartCrafts. All rights reserved.</p>
+  </footer>
+  <!-- Product Details Modal -->
+<div id="product-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden justify-center items-center z-50 transition-opacity duration-300 ease-in-out">
+  <div id="modal-content" class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative transform scale-95 opacity-0 transition-transform duration-300 ease-in-out">
+    <button id="modal-close" class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold">&times;</button>
+    <img id="modal-image" src="" alt="" class="w-full h-60 object-cover rounded mb-4">
+    <h2 id="modal-name" class="text-2xl font-bold mb-2"></h2>
+    <p id="modal-description" class="text-gray-600 mb-2"></p>
+    <p id="modal-price" class="text-yellow-600 font-bold text-lg mb-4"></p>
+    <button id="modal-add-cart" class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded w-full">
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+
+
+<script src="./data/products.js"></script>
+<script src="./assets/js/index-script.js"></script>
+
+</body>
+</html>
